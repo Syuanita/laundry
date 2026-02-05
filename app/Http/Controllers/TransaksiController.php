@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
-use App\Models\Kategori; // Kita butuh ini untuk ambil harga
+use App\Models\Kategori; 
 
 class TransaksiController extends Controller
 {
@@ -25,6 +25,8 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'nama_customer' => 'required|string',
+            'nomer_telepon' => 'required|string',
             'kategori_id' => 'required',
             'berat' => 'required|numeric',
             'status_bayar' => 'required',
@@ -55,6 +57,15 @@ class TransaksiController extends Controller
 
     public function update(Request $request, Transaksi $transaksi)
     {
+        $request->validate([
+            'nama_customer' => 'required|string',
+            'nomer_telepon' => 'required|string',
+            'kategori_id' => 'required',
+            'berat' => 'required|numeric',
+            'status_bayar' => 'required',
+            'status_proses' => 'required',
+        ]);
+
         
         $kategori = Kategori::find($request->kategori_id);
         $total_harga = ($request->berat * $kategori->harga_per_jenis) + $kategori->biaya_layanan;
@@ -64,7 +75,7 @@ class TransaksiController extends Controller
 
         $transaksi->update($data);
 
-        return redirect()->route('transaksi.index')->with('success', 'Transaksi diperbarui');
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbarui');
     }
 
     public function destroy(Transaksi $transaksi)

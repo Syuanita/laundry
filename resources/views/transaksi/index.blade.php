@@ -9,6 +9,8 @@
     <thead class="table-dark">
         <tr>
             <th>ID</th>
+            <th>Nama</th>
+            <th>No. Telpon</th>
             <th>Layanan</th>
             <th>Berat/Jml</th>
             <th>Total Bayar</th>
@@ -22,6 +24,8 @@
         @foreach($transaksi as $t)
         <tr>
             <td>#{{ $t->id }}</td>
+            <td>{{ $t->nama_customer }}</td>
+            <td>{{ $t->nomer_telepon }}</td>
             <td>
                 {{ $t->kategori->nama_jenis }} 
                 <small class="text-muted">({{ $t->kategori->durasi_layanan }})</small>

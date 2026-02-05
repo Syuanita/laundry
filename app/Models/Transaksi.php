@@ -12,16 +12,17 @@ class Transaksi extends Model
     protected $table = 'transaksi';
 
     protected $fillable = [
+        'nama_customer',
+        'nomer_telepon',
+        'kategori_id',
         'berat',
-        'kategori_id', 
-        'total_harga',
         'status_bayar',
-        'status_proses'
+        'status_proses',
+        'total_harga'
     ];
 
-    
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class);
     }
 }

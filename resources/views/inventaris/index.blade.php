@@ -20,10 +20,17 @@
             <td>Rp {{ number_format($inv->harga) }}</td>
             <td>{{ $inv->stok }}</td>
             <td>
-                <form action="{{ route('inventaris.destroy', $inv->id) }}" method="POST" onsubmit="return confirm('Hapus?')">
-                    @csrf @method('DELETE')
-                    <button class="btn btn-sm btn-danger">Hapus</button>
-                </form>
+                <div class="d-flex gap-1">
+                    <a href="{{ route('inventaris.edit', $inv->id) }}" class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
+
+                    <form action="{{ route('inventaris.destroy', $inv->id) }}" method="POST" onsubmit="return confirm('Hapus?')">
+                        @csrf 
+                        @method('DELETE')
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                    </form>
+                </div>
             </td>
         </tr>
         @endforeach

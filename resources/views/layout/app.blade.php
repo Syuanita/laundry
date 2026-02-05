@@ -31,12 +31,16 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('kategori.index') }}">Kategori & Layanan</a></li>
                 <li><a class="dropdown-item" href="{{ route('karyawan.index') }}">Data Karyawan</a></li>
-                <li><a class="dropdown-item" href="{{ route('inventaris.index') }}">Inventaris Barang</a></li>
+                {{-- <li><a class="dropdown-item" href="{{ route('inventaris.index') }}">Inventaris Barang</a></li> --}}
               </ul>
             </li>
 
             <li class="nav-item">
               <a class="nav-link" href="{{ route('penggajian.index') }}">Penggajian</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('expenditures.index') }}">Pengeluaran</a>
             </li>
 
             <li class="nav-item">

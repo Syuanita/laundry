@@ -46,7 +46,7 @@
 </div>
 
 <div class="row mt-3">
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
         <div class="card shadow-sm">
             <div class="card-body">
                 <h5>Inventaris Barang</h5>
@@ -54,13 +54,22 @@
                 <a href="{{ route('inventaris.index') }}" class="btn btn-outline-dark">Cek Stok</a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-6">
         <div class="card shadow-sm">
             <div class="card-body">
                 <h5>Hitung Gaji</h5>
                 <p>Rekap gaji karyawan berdasarkan kinerja.</p>
                 <a href="{{ route('penggajian.index') }}" class="btn btn-outline-dark">Buat Penggajian</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Pengeluaran</h5>
+                <p>Rekap Pengeluaran.</p>
+                <a href="{{ route('expenditures.index') }}" class="btn btn-outline-dark">Lihat Pengeluaran</a>
             </div>
         </div>
     </div>
