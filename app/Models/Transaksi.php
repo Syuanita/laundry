@@ -12,6 +12,7 @@ class Transaksi extends Model
     protected $table = 'transaksi';
 
     protected $fillable = [
+        'tgl_transaksi',
         'nama_customer',
         'nomer_telepon',
         'kategori_id',

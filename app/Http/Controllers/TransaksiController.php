@@ -10,40 +10,43 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-        
-        $transaksi = Transaksi::with('kategori')->latest()->get();
+  
+        $transaksi = Transaksi::with('kategori')
+                        ->orderBy('tgl_transaksi', 'desc')
+                        ->latest()
+                        ->get();
+                        
         return view('transaksi.index', compact('transaksi'));
     }
 
     public function create()
     {
-        
         $kategori = Kategori::all();
         return view('transaksi.create', compact('kategori'));
     }
 
     public function store(Request $request)
     {
+ 
         $request->validate([
+            'tgl_transaksi' => 'required|date', 
             'nama_customer' => 'required|string',
             'nomer_telepon' => 'required|string',
-            'kategori_id' => 'required',
-            'berat' => 'required|numeric',
-            'status_bayar' => 'required',
+            'kategori_id'   => 'required',
+            'berat'         => 'required|numeric',
+            'status_bayar'  => 'required',
             'status_proses' => 'required',
         ]);
 
-        
+ 
         $kategori = Kategori::find($request->kategori_id);
 
-       
-        $total_harga = ($request->berat * $kategori->harga_per_jenis) + $kategori->biaya_layanan;
+        $biaya_layanan = $kategori->biaya_layanan ?? 0;
+        $total_harga = ($request->berat * $kategori->harga_per_jenis) + $biaya_layanan;
 
-        
-        $data = $request->all();
+        $data = $request->all(); 
         $data['total_harga'] = $total_harga;
-        
-
+ 
         Transaksi::create($data);
 
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil dibuat! Total: Rp '.number_format($total_harga));
@@ -57,19 +60,24 @@ class TransaksiController extends Controller
 
     public function update(Request $request, Transaksi $transaksi)
     {
+      
         $request->validate([
+            'tgl_transaksi' => 'required|date',
             'nama_customer' => 'required|string',
             'nomer_telepon' => 'required|string',
-            'kategori_id' => 'required',
-            'berat' => 'required|numeric',
-            'status_bayar' => 'required',
+            'kategori_id'   => 'required',
+            'berat'         => 'required|numeric',
+            'status_bayar'  => 'required',
             'status_proses' => 'required',
         ]);
 
-        
+  
         $kategori = Kategori::find($request->kategori_id);
-        $total_harga = ($request->berat * $kategori->harga_per_jenis) + $kategori->biaya_layanan;
+        
+        $biaya_layanan = $kategori->biaya_layanan ?? 0;
+        $total_harga = ($request->berat * $kategori->harga_per_jenis) + $biaya_layanan;
 
+        
         $data = $request->all();
         $data['total_harga'] = $total_harga;
 

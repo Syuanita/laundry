@@ -23,7 +23,7 @@
 
                     <form action="{{ route('inventaris.update', $item->id) }}" method="POST">
                         @csrf
-                        @method('PUT') {{-- Penting: Laravel menggunakan spoofing method PUT untuk update --}}
+                        @method('PUT') 
 
                         <div class="mb-3">
                             <label for="nama_barang" class="form-label">Nama Barang</label>

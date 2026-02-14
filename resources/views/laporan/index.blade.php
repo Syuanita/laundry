@@ -9,7 +9,7 @@
 
 <div class="card shadow-sm mb-4">
     <div class="card-body">
-        <form action="{{ route('laporan.index') }}" method="GET" class="row g-3 align-items-end">
+        <form action="{{ route('laporan.index') }}" method="GET" id="filterForm" class="row g-3 align-items-end">
             <div class="col-md-4">
                 <label class="fw-bold">Dari Tanggal</label>
                 <input type="date" name="start_date" class="form-control" value="{{ $startDate }}">
@@ -18,8 +18,15 @@
                 <label class="fw-bold">Sampai Tanggal</label>
                 <input type="date" name="end_date" class="form-control" value="{{ $endDate }}">
             </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary w-100">Tampilkan Laporan</button>
+            
+            <div class="col-md-4 d-flex gap-2">
+                <button type="submit" class="btn btn-primary w-50" onclick="document.getElementById('filterForm').action='{{ route('laporan.index') }}'; document.getElementById('filterForm').target='_self';">
+                    Tampilkan
+                </button>
+
+                <button type="submit" class="btn btn-danger w-50" onclick="document.getElementById('filterForm').action='{{ route('laporan.export_pdf') }}'; document.getElementById('filterForm').target='_blank';">
+                    Download PDF
+                </button>
             </div>
         </form>
     </div>
@@ -137,7 +144,7 @@
 <script>
     const formatIDR = (value) => 'Rp ' + value.toLocaleString('id-ID');
 
-    // 1. Grafik Status PROSES
+
     new Chart(document.getElementById('chartProses'), {
         type: 'doughnut',
         data: {
@@ -150,7 +157,7 @@
         options: { plugins: { legend: { position: 'bottom' } } }
     });
 
-    // 2. Grafik Status BAYAR
+ 
     new Chart(document.getElementById('chartBayar'), {
         type: 'pie',
         data: {
@@ -163,7 +170,7 @@
         options: { plugins: { legend: { position: 'bottom' } } }
     });
 
-    // 3. Grafik Detail Pengeluaran
+   
     new Chart(document.getElementById('chartPengeluaran'), {
         type: 'bar',
         data: {
@@ -180,7 +187,7 @@
         }
     });
 
-    // 4. Grafik Comparison
+ 
     new Chart(document.getElementById('chartComparison'), {
         type: 'bar',
         data: {

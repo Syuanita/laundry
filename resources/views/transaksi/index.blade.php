@@ -38,7 +38,9 @@
                 </span>
             </td>
             <td>{{ ucfirst($t->status_proses) }}</td>
-            <td>{{ $t->created_at->format('d M Y') }}</td>
+            
+            <td>{{ date('d M Y', strtotime($t->tgl_transaksi)) }}</td>
+
             <td>
                 <a href="{{ route('transaksi.edit', $t->id) }}" class="btn btn-sm btn-info text-white">Update</a>
                 

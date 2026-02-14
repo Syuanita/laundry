@@ -15,8 +15,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
+          <ul class="navbar-nav ms-auto align-items-center"> <li class="nav-item">
               <a class="nav-link" href="{{ url('/') }}">Dashboard</a>
             </li>
             
@@ -31,7 +30,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('kategori.index') }}">Kategori & Layanan</a></li>
                 <li><a class="dropdown-item" href="{{ route('karyawan.index') }}">Data Karyawan</a></li>
-                {{-- <li><a class="dropdown-item" href="{{ route('inventaris.index') }}">Inventaris Barang</a></li> --}}
               </ul>
             </li>
 
@@ -46,7 +44,13 @@
             <li class="nav-item">
               <a class="nav-link fw-bold" href="{{ route('laporan.index') }}">Laporan & Grafik</a>
             </li>
-          </ul>
+
+            <li class="nav-item ms-lg-3"> <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm px-3">Logout</button>
+                </form>
+            </li>
+            </ul>
         </div>
       </div>
     </nav>

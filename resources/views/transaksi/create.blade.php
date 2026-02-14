@@ -5,14 +5,23 @@
     @csrf
     
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
+            <label>Tanggal Transaksi</label>
+            <input type="date" name="tgl_transaksi" class="form-control" value="{{ date('Y-m-d') }}" required>
+            @error('tgl_transaksi')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="col-md-4 mb-3">
             <label>Nama Pelanggan</label>
             <input type="text" name="nama_customer" class="form-control" placeholder="Masukkan nama pelanggan" required>
             @error('nama_customer')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-md-6 mb-3">
+
+        <div class="col-md-4 mb-3">
             <label>No. Telpon</label>
             <input type="text" name="nomer_telepon" class="form-control" placeholder="Contoh: 081234567890" required>
             @error('nomer_telepon')
