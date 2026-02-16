@@ -41,20 +41,38 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <label>Pilih Layanan</label>
-                <select name="kategori_id" class="form-control" required>
-                    <option value="">-- Pilih Jenis Laundry --</option>
-                    @foreach($kategori as $k)
-                        <option value="{{ $k->id }}" 
-                            {{ old('kategori_id', $transaksi->kategori_id) == $k->id ? 'selected' : '' }}>
-                            {{ $k->nama_jenis }} - {{ $k->durasi_layanan }} (Rp {{ number_format($k->harga_per_jenis) }})
-                        </option>
-                    @endforeach
-                </select>
-                @error('kategori_id')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Pilih Layanan</label>
+                    <select name="kategori_id" class="form-control" required>
+                        <option value="">-- Pilih Jenis Laundry --</option>
+                        @foreach($kategori as $k)
+                            <option value="{{ $k->id }}" 
+                                {{ old('kategori_id', $transaksi->kategori_id) == $k->id ? 'selected' : '' }}>
+                                {{ $k->nama_jenis }} - {{ $k->durasi_layanan }} (Rp {{ number_format($k->harga_per_jenis) }})
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('kategori_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>Karyawan yang Mengerjakan</label>
+                    <select name="karyawan_id" class="form-control" required>
+                        <option value="">-- Pilih Karyawan --</option>
+                        @foreach($karyawan as $kry)
+                            <option value="{{ $kry->id }}" 
+                                {{ old('karyawan_id', $transaksi->karyawan_id) == $kry->id ? 'selected' : '' }}>
+                                {{ $kry->nama_karyawan }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('karyawan_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
             
             <div class="mb-3">
@@ -84,13 +102,11 @@
                 </div>
             </div>
 
-            {{-- ALERT INFO HARGA --}}
             <div class="alert alert-info">
                 <strong><i class="fas fa-calculator"></i> Info:</strong> 
                 Total harga saat ini adalah <b>Rp {{ number_format($transaksi->total_harga) }}</b>. 
                 Sistem akan menghitung ulang otomatis jika Anda mengubah layanan atau berat.
             </div>
-
 
             <div class="card bg-light mb-3">
                 <div class="card-body py-2">

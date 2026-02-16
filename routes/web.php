@@ -64,6 +64,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('penggajian', PenggajianController::class);
     Route::resource('expenditures', ExpenditureController::class);
     
+    Route::get('/penggajian/get-total-kg/{karyawan_id}', [PenggajianController::class, 'getTotalKg']);
+
+     
+
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 
     Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export_pdf');

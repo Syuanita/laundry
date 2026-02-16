@@ -16,6 +16,7 @@ class Transaksi extends Model
         'nama_customer',
         'nomer_telepon',
         'kategori_id',
+        'karyawan_id', 
         'berat',
         'status_bayar',
         'status_proses',
@@ -25,5 +26,11 @@ class Transaksi extends Model
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
+    }
+
+    // Tambahkan relasi ke Karyawan
+    public function karyawan()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
     }
 }
