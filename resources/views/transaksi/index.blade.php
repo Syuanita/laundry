@@ -1,5 +1,27 @@
 @extends('layout.app')
 @section('content')
+
+
+@if(session('whatsapp_url'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><i class="fas fa-check-circle"></i> Transaksi Berhasil Disimpan!</strong><br>
+        Silakan klik tombol di bawah untuk mengirim struk digital:
+        <br><br>
+        
+        <a href="{{ session('whatsapp_url') }}" target="_blank" class="btn btn-success btn-lg">
+            <i class="fab fa-whatsapp"></i> Kirim Struk ke WhatsApp Pelanggan
+        </a>
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@elseif(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+
 <div class="d-flex justify-content-between mb-3">
     <h3>Data Transaksi</h3>
     <a href="{{ route('transaksi.create') }}" class="btn btn-warning fw-bold">Transaksi Baru</a>
